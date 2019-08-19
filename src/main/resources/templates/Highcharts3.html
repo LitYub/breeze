@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+<style>
+
+    #father {
+        width: 1300px;
+        height: 100px;
+        text-align: center;
+
+       }
+
+</style>
+		<style type="text/css">
+#container {
+	min-width: 320px;
+	max-width: 1600px;
+	height: 600px
+	margin: 0 auto;
+}
+		</style>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/font.css">
+    <link rel="stylesheet" href="../static/css/xadmin.css">
+    <script src="../static/js/jquery.min.js"></script>
+	<script src="../static/lib/layui/layui.js"></script>
+    <script type="text/javascript" src="../static/js/xadmin.js"></script>
+	</head>
+	<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="../static/code/highcharts.js"></script>
+<script src="../static/code/highcharts-more.js"></script>
+<script src="../static/code/modules/exporting.js"></script>
+<br><br>
+<div id="container"></div>
+<br><br>
+<div class="layui-btn-group"id="father">
+<button class="layui-btn" id="plain">纵行</button>
+<button class="layui-btn " id="inverted">横行</button>
+<button class="layui-btn" id="polar">发散</button>
+</div>
+<script type="text/javascript">
+var chart = Highcharts.chart('container', {
+
+    title: {
+        text: '景点评分图'
+    },
+
+    subtitle: {
+        text: 'XX省'
+    },
+
+    xAxis: {
+        categories: ['景点1', '景点2', '景点3', '景点4', '景点5', '景点6', '景点7']
+    },
+
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: [29.9, 71.5, 65.4, 29.2, 44.0, 76.0, 35.6],
+        showInLegend: false
+    }]
+
+});
+
+
+$('#plain').click(function () {
+    chart.update({
+        chart: {
+            inverted: false,
+            polar: false
+        },
+        subtitle: {
+            text: 'Plain'
+        }
+    });
+});
+
+$('#inverted').click(function () {
+    chart.update({
+        chart: {
+            inverted: true,
+            polar: false
+        },
+        subtitle: {
+            text: 'Inverted'
+        }
+    });
+});
+
+$('#polar').click(function () {
+    chart.update({
+        chart: {
+            inverted: false,
+            polar: true
+        },
+        subtitle: {
+            text: 'Polar'
+        }
+    });
+});
+
+		</script>
+	</body>
+</html>

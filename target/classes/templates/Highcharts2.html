@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+<script src="../static/code/highcharts.js"></script>
+<script src="../static/code/modules/exporting.js"></script>
+<script src="../static/code/modules/export-data.js"></script>
+<script src="../static/js/jquery-1.11.3.min.js"></script>
+<br>
+<div id="container" style="min-width: 310px; max-width: 1200px; height: 800px; margin: 0 auto"></div>
+
+
+
+		<script type="text/javascript">
+		 $(function(){
+            $.ajax({
+                type: "POST",
+                url:"/breeze/procost",
+                success: function(msg){
+                    var data1 = [];
+                    for (i=0;i<msg.length;i++){
+                        var newData = {name: ' '};
+                        newData.name = msg[i].province;
+                        data1.push(newData)
+
+                    }
+                    var data2 = [];
+                    for (i=0;i<msg.length;i++){
+                        var newData = {y: ' '};
+                        newData.y = msg[i].cost;
+                        data2.push(newData)
+                    }
+
+					Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: '一年内各省份旅游消费总额柱状图'
+    },
+    xAxis: {
+        categories: [data1[0].name,data1[1].name,data1[2].name,data1[3].name,data1[4].name,data1[5].name,data1[6].name,data1[7].name,data1[8].name,data1[9].name,data1[10].name,data1[11].name,data1[12].name,data1[13].name,data1[14].name,data1[15].name,data1[16].name,data1[17].name,data1[18].name,data1[19].name,data1[20].name,data1[21].name,data1[22].name,data1[23].name,data1[24].name,data1[25].name,data1[26].name,data1[27].name,data1[28].name,data1[29].name,data1[30].name,data1[31].name,data1[32].name,data1[33].name]
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '旅行总消费额'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: '消费总额',
+        data: data2
+    }]
+});
+
+				}
+			});
+
+
+});
+
+
+		</script>
+	</body>
+</html>

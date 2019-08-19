@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+		<meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../static//favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/font.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/layui/css/layui.css">
+    <script src="../static/js/jquery.min.js"></script>
+	<script src="../static/lib/layui/layui.js"></script>
+    <script type="text/javascript" src="../static/js/xadmin.js"></script>
+	</head>
+	<body>
+<script src="../static/code/highcharts.js"></script>
+<script src="../static/code/modules/data.js"></script>
+<script src="../static/code/modules/drilldown.js"></script>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+  <legend>省份-景点-人数-关系图</legend>
+</fieldset>
+<div class="layui-collapse" lay-accordion="">
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">图表介绍</h2>
+    <div class="layui-colla-content">
+      <p>图中显示的为每年旅游人数排名前七的省份。
+      <br>
+      点击各省的柱状图行即可查看本省客流量排名前五的景点！</p>
+    </div>
+  </div>
+</div>
+
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+<script type="text/javascript">
+// Create the chart
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '最受人们欢迎的省份Top7'
+    },
+    subtitle: {
+        text: '<--以及各省份内最受欢迎的五个景点-->'
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: '人数/人'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y}'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b>人<br/>'
+    },
+
+    series: [
+        {
+            name: "省份-人数",
+            colorByPoint: true,
+            data: [
+                {
+                    name: "陕西省",
+                    y: 100,
+                    drilldown: "Chrome"
+                },
+                {
+                    name: "四川省",
+                    y: 344,
+                    drilldown: "Firefox"
+                },
+                {
+                    name: "江苏省",
+                    y: 324,
+                    drilldown: "Internet Explorer"
+                },
+                {
+                    name: "海南省",
+                    y: 324,
+                    drilldown: "Safari"
+                },
+                {
+                    name: "湖南省",
+                    y: 231,
+                    drilldown: "Edge"
+                },
+                {
+                    name: "湖北省",
+                    y: 123,
+                    drilldown: "Opera"
+                },
+                {
+                    name: "江西省",
+                    y: 455,
+                    drilldown: "Other"
+                }
+            ]
+        }
+    ],
+    drilldown: {
+        series: [
+            {
+                name: "Chrome",
+                id: "Chrome",
+                data: [
+                    [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                    
+                ]
+            },
+            {
+                name: "Firefox",
+                id: "Firefox",
+                data: [
+                   [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                ]
+            },
+            {
+                name: "Internet Explorer",
+                id: "Internet Explorer",
+                data: [
+                    [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                ]
+            },
+            {
+                name: "Safari",
+                id: "Safari",
+                data: [
+                    [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                ]
+            },
+            {
+                name: "Edge",
+                id: "Edge",
+                data: [
+                   [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                ]
+            },
+            {
+                name: "Opera",
+                id: "Opera",
+                data: [
+                    [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                ]
+            },
+			{
+                name: "Other",
+                id: "Other",
+                data: [
+                    [
+                        "兵马俑",
+                       34
+                    ],
+                    [
+                        "大雁塔",
+                       32
+                    ],
+                    [
+                        "城墙",
+                       45
+                    ],
+                    [
+                        "华山",
+                        67
+                    ],
+                    [
+                        "西工大",
+                        23
+                    ]
+                ]
+            }
+        ]
+    }
+});
+		</script>
+	</body>
+</html>

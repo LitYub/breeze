@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+#container {
+    min-width: 300px;
+    max-width: 800px;
+    height: 500px;
+    margin: 1em auto;
+}
+		</style>
+	</head>
+	<body>
+<script src="../static/code/highcharts.js"></script>
+<script src="../static/code/modules/variable-pie.js"></script>
+<br><br><br>
+<div id="container"></div>
+
+
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+	type:"POST",
+	url:"/breeze/typeNum",
+	success:function(msg){
+		var data = [];
+		for(i=0;i<msg.length;i++){
+		var newData = {name: ' ',y: 11.84};
+                        newData.name = msg[i].type;
+                        newData.y = msg[i].num;
+                        data.push(newData)
+		}
+		Highcharts.chart('container', {
+    chart: {
+        type: 'variablepie'
+    },
+    title: {
+        text: '人数-旅游景点类型关系图'
+    },
+    tooltip: {
+        headerFormat: '',
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+            '人数: <b>{point.y}</b><br/>'
+    },
+    series: [{
+        minPointSize: 60,
+        innerSize: '50%',
+        zMin: 0,
+        name: '景点类型',
+        data: data
+    }]
+});
+
+	}
+ }
+)}
+
+
+		</script>
+	</body>
+</html>
